@@ -41,18 +41,15 @@ public class Festmeny {
         if (getElkelt()){
             System.out.println("A festmény már elkelt T-T ");
         }
-        else if (getLicitekSzama() == 0){
-            this.legmagasabbLicit += 100;
-            this.licitekSzama++;
-            this.legutolsoLicit = LocalDateTime.now();
-        }
         else {
             licit(10);
         }
     }
     public void licit(int mertek){
-        if (getElkelt()){
-            System.out.println("A festmény már elkelt T-T ");
+        if (getLicitekSzama() == 0){
+            this.legmagasabbLicit += 100;
+            this.licitekSzama++;
+            this.legutolsoLicit = LocalDateTime.now();
         }
         else if (10<=mertek && mertek<=100){
             this.legmagasabbLicit += this.legmagasabbLicit * mertek / 100;
@@ -66,7 +63,11 @@ public class Festmeny {
 
     @Override
     public String toString() {
-        String ez = festo +": "+cim+  "(" + stilus + ")" + "\n"+elkelt+"\n"+
+        String e="";
+        if(elkelt){
+            e = "Elkelt";
+        }
+        String ez = festo +": "+cim+  "(" + stilus + ")" + "\n"+e+"\n"+
                 legmagasabbLicit+"$ - "+ legutolsoLicit +" ( összesen: "+ licitekSzama + " db)";
         String az = festo +": "+cim+  "(" + stilus + ")" + "\n"+
                 legmagasabbLicit+"$ - "+ legutolsoLicit +" ( összesen: "+ licitekSzama + " db)";
