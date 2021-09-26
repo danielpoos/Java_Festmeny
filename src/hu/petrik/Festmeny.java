@@ -6,13 +6,15 @@ public class Festmeny {
     private String cim;
     private String festo;
     private String stilus;
-    private int licitekSzama;
-    private int legmagasabbLicit;
+    private int licitekSzama = 0;
+    private int legmagasabbLicit = 0;
     private LocalDateTime legutolsoLicit;
-    private boolean elkelt;
+    private boolean elkelt = false;
 
     public Festmeny(String cim, String festo, String stilus){
-
+        this.cim = cim;
+        this.festo = festo;
+        this.stilus = stilus;
     }
     public String getFesto() {
         return this.festo;
@@ -59,4 +61,17 @@ public class Festmeny {
         }
     }
 
+    @Override
+    public String toString() {
+        String ez = festo +": "+cim+  "(" + stilus + ")" + "\n"+elkelt+"\n"+
+                legmagasabbLicit+"$ - "+ legutolsoLicit +" ( összesen: "+ licitekSzama + " db)";
+        String az = festo +": "+cim+  "(" + stilus + ")" + "\n"+
+                legmagasabbLicit+"$ - "+ legutolsoLicit +" ( összesen: "+ licitekSzama + " db)";
+        if (elkelt){
+            return ez;
+        }
+        else{
+            return az;
+        }
+    }
 }
