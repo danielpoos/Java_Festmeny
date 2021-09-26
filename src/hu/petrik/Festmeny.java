@@ -41,18 +41,21 @@ public class Festmeny {
         if (getElkelt()){
             System.out.println("A festmény már elkelt T-T ");
         }
-        if (getLicitekSzama() == 0){
+        else if (getLicitekSzama() == 0){
             this.legmagasabbLicit += 100;
             this.licitekSzama++;
             this.legutolsoLicit = LocalDateTime.now();
         }
-        if (getLicitekSzama() > 0){
+        else {
             licit(10);
         }
     }
     public void licit(int mertek){
-        if (10<=mertek && mertek<=100){
-            this.legmagasabbLicit += this.legmagasabbLicit * (mertek/10);
+        if (getElkelt()){
+            System.out.println("A festmény már elkelt T-T ");
+        }
+        else if (10<=mertek && mertek<=100){
+            this.legmagasabbLicit += this.legmagasabbLicit * mertek / 100;
             this.licitekSzama++;
             this.legutolsoLicit = LocalDateTime.now();
         }
