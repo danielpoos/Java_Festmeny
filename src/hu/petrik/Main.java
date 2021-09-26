@@ -1,8 +1,5 @@
 package hu.petrik;
 
-import javax.swing.*;
-import java.awt.event.InputEvent;
-import java.awt.event.KeyEvent;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -91,12 +88,37 @@ public class Main {
         if(kerdes.equals("I") || kerdes.equals("i") || kerdes.equals("Igen") || kerdes.equals("igen")){
             licital(true);
         }
+        int legDragabb = 0;
+        int index=0;
+        boolean volt10 = false;
+        int nemKeltEl= 0;
         for (int i = 0; i < festmenyList.size(); i++) {
             if (festmenyList.get(i).getLicitekSzama() != 1){
                 festmenyList.get(i).setElkelt(true);
             }
+            else{
+                nemKeltEl++;
+            }
+            if(legDragabb<festmenyList.get(i).getLegmagasabbLicit()){
+                legDragabb =festmenyList.get(i).getLegmagasabbLicit();
+                index = i;
+            }
+            if (festmenyList.get(i).getLicitekSzama()>10){
+                volt10 = true;
+            }
+            else{
+                volt10=false;
+            }
             System.out.println(festmenyList.get(i));
         }
+        System.out.println("Legdrágább festmény: " + festmenyList.get(index));
+        if (volt10){
+            System.out.println("Volt olyan festmény, amire 10 licit érkezett");
+        }
+        else{
+            System.out.println("Nem volt olyan festmény, amire 10 licit érkezett");
+        }
+        System.out.println(nemKeltEl + "db festmény nem kelt el");
         System.out.println("\nLegyen szép napja!");
     }
 }
